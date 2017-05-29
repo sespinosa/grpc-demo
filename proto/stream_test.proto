@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package stream_test;
+
+service streamTest {
+  
+  rpc Unary(UnaryReq) returns (UnaryRes) {}
+
+  rpc StreamClient(StreamClientReq) returns (stream StreamClientRes) {}
+
+  rpc StreamServer(stream StreamServerReq) returns (StreamServerRes) {}
+
+  rpc StreamDuplex(stream StreamDuplexReq) returns (stream StreamDuplexRes) {}
+
+}
+
+message UnaryReq {
+  string operator = 1;
+  int32 a = 2;
+  int32 b = 3;
+}
+
+message UnaryRes {
+  bool success = 1;
+  float result = 2;
+}
+
+message StreamClientReq {
+  string message = 1;
+}
+
+message StreamClientRes {
+  string message = 1;
+}
+
+message StreamServerReq {
+  int32 number = 1;
+}
+
+message StreamServerRes {
+  int32 result = 1;
+}
+
+message StreamDuplexReq {
+  int32 number = 1;
+}
+
+message StreamDuplexRes {
+  int32 number = 1;
+}
+
+
+
